@@ -6,13 +6,14 @@ pacman::p_load(pacman,tm,SnowballC,tidyverse)
 #Cargamos el dataset####
 produccion <- read_tsv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkDKzlmUDpcVD1YOAhnFjcmIRNgMTdMOI-kInTO1yGvNWRhqvRzNz0zB2YisO2jaIcJFpXxHSNnI0/pub?gid=492480808&single=true&output=tsv")
 produccion
+
 #Me quedo solo con las filas vÃ¡lidas
 produccion <- produccion[1:19,]
 produccion
 
 #Vision general produccion fotovoltaica####
 library(ggplot2)
-ggplot(produccion, aes(x=produccion$`Comunidad AutÃ³noma`, y=produccion$`Solar fotovoltaica`),) + 
+ggplot(produccion, aes(x=produccion$`Solar fotovoltaica`, y=produccion$`Comunidad Autónoma`),) + 
   #geom_line(colour="red")  + 
   geom_point( size=2, shape=10, fill="cyan1", colour="cyan1") + 
   theme_minimal()
@@ -23,7 +24,7 @@ TSVNoEspania
 
 #Visualizacion produccion fotovoltaica CCAA####
 library(ggplot2)
-ggplot(TSVNoEspania, aes(x=TSVNoEspania$`Comunidad AutÃ³noma`, y=TSVNoEspania$`Solar fotovoltaica`),) + 
+ggplot(TSVNoEspania, aes(x=TSVNoEspania$`Solar fotovoltaica`, y=TSVNoEspania$`Comunidad Autónoma`),) + 
   #geom_line(colour="red")  + 
   geom_point( size=2, shape=21, fill="lightpink", colour="lightpink") + 
   theme_minimal()
