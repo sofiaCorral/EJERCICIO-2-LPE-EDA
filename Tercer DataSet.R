@@ -2,6 +2,7 @@
 pacman::p_load(pacman,tm,SnowballC,tidyverse)
 
 #Cargamos los datos####
+
 datosAnimales <- read_csv(file.choose())
 datosAnimales
 
@@ -9,10 +10,15 @@ datosAnimales
 ColumnaPaises <- datosAnimales[,"All_DistributionFullNames"]
 ColumnaPaises
 
-s <-select(datosAnimales[datosAnimales$All_DistributionFullNames == 'Spain', ], contains("Spain"))
-s
+#Aplico expresiones regulares####
+soloEspaña <- str_match(datosAnimales, '\b(Spain)\b')
+soloEspaña
+
+#Solo en Espania####
 prueba <- datosAnimales[datosAnimales$All_DistributionFullNames == 'Spain', ]
 prueba
-#Aplico expresiones regulares####
-#str_match(ColumnaPaises, ',[Spain+]')
-str_match(ColumnaPaises, '\b(Spain)\b')
+
+#especies solo espania####
+contar <- sum(datosAnimales[datosAnimales$All_DistributionFullNames == 'Spain'],)
+contar
+
