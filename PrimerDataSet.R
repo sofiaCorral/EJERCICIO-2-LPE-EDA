@@ -1,33 +1,35 @@
 
-#Importamos las librerias necesarioas####
+#Importamos las librerias necesarias####
 pacman::p_load(pacman,tm,SnowballC,tidyverse)
 
 #Cargamos el dataset####
-TSV <- read_tsv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkDKzlmUDpcVD1YOAhnFjcmIRNgMTdMOI-kInTO1yGvNWRhqvRzNz0zB2YisO2jaIcJFpXxHSNnI0/pub?gid=1141698242&single=true&output=tsv")
-TSV
+potencia <- read_tsv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRWA31ESkbfDiES02Rz2ms7Y5mSt1Nvftu9l5jWD2DzyndUxeWw-qL5tVjJnunYrw/pub?gid=1682298095&single=true&output=tsv")
+potencia
 
-#Imprimo solo la fila de españa####
-Nuevo <- TSV[TSV$País == "España", ]
-Nuevo
+#Me quedo solo con las filas vÃ¡lidas
+potencia <- potencia[1:60,]
+potencia
 
-#Imprimo solo los valores de Kw####
-fila <- TSV[, 2:19]
-fila
+#Valores nulos de todo el dataSet####
+Nulos <- sum(is.na(potencia))
+Nulos 
 
-#PRUEBAS VISUALIZACIÓN####
+#Imprimir fila de Espania####
+Espania <- potencia[potencia$X1 == "España", ]
+Espania
 
-#esta funciona
-ggplot(fila) +
-geom_point( size=2, shape=21, fill="white", colour="red") + 
-  theme_minimal()
+#Hay nulos en Espania####
+NulosEspania <- sum(is.na(Espania))
+NulosEspania
 
+#Borramos toda la fila de los datos que tienen nulos en la columna 2019####
+potencia2019 <- potencia[!is.na(potencia$X19),]
+potencia2019
 
+#Visualizacion diagrama de dispersion####
 library(ggplot2)
-ggplot(TSV, aes(x=País, y=Total2019)) + 
-  #geom_line(colour="red")  + 
+ggplot(potencia2019, aes(x = X19, y=X1),) + 
+  geom_line(colour="blue")  + 
   geom_point( size=2, shape=21, fill="white", colour="red") + 
   theme_minimal()
 
-library(ggplot2)
-g <- ggplot(fila, aes(x=País, fill=Nuevo[1:,]))
-g + geom_density(alpha=0.8, colour="gray60") + xlim(c(0, 8))
