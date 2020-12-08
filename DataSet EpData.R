@@ -25,6 +25,20 @@ epData2018
 epData2018 <- epData[,3:10]
 epData2018
 
+#Visualizacion evolucion energia solar####
+library(ggplot2)
+ggplot(epData, aes(x=epData$AÃ.o, y=epData$Solar),) + 
+  #geom_line(colour="red")  + 
+  geom_point( size=2, shape=10, fill="firebrick4 ", colour="firebrick4") + 
+  theme_minimal()
+
+#Visualizacion evolucion energia eolica####
+library(ggplot2)
+ggplot(epData, aes(x=epData$AÃ.o, y=epData$`EÃ³lica`),) + 
+  #geom_line(colour="red")  + 
+  geom_point( size=2, shape=10, fill="hotpink4", colour="hotpink4") + 
+  theme_minimal()
+
 #Grafico de sectores####
 pie(epData2018, clockwise=TRUE, main="Grafico de sectores 2018")
 
