@@ -14,5 +14,7 @@ ColumnaPaises
 soloEspania <- datosAnimales %>% filter(All_DistributionFullNames=='Spain')
 soloEspania
 
+
+
 #Visualizacion diagrama de barras####
 soloEspania %>% ggplot( mapping = aes(y=Family))+geom_bar()
