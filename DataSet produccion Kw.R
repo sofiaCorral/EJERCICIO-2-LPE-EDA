@@ -10,21 +10,23 @@ produccion
 #Me quedo solo con las filas válidas
 produccion <- produccion[1:19,]
 produccion
-
+produccion[1:19,]
 #Vision general produccion fotovoltaica####
 library(ggplot2)
-ggplot(produccion, aes(x=produccion$`Solar fotovoltaica`, y=produccion$`Comunidad Aut�noma`),) + 
+
+ggplot(produccion, aes(x=produccion$`Solar fotovoltaica`, y=produccion`Comunidad Aut?noma`),) + 
+
   #geom_line(colour="red")  + 
   geom_point( size=2, shape=10, fill="cyan1", colour="cyan1") + 
   theme_minimal()
 
 #Creo nuevo dataSet sin España####
-TSVNoEspania <- produccion[produccion$`Comunidad Autónoma` != "ESPA�A", ]
+TSVNoEspania <- produccion[produccion$`Comunidad Autónoma` != "ESPA?A", ]
 TSVNoEspania
 
 #Visualizacion produccion fotovoltaica CCAA####
 library(ggplot2)
-ggplot(TSVNoEspania, aes(x=TSVNoEspania$`Solar fotovoltaica`, y=TSVNoEspania$`Comunidad Aut�noma`),) + 
+ggplot(TSVNoEspania, aes(x=TSVNoEspania$`Solar fotovoltaica`, y=TSVNoEspania$`Comunidad Aut?noma`),) + 
   #geom_line(colour="red")  + 
   geom_point( size=2, shape=21, fill="lightpink", colour="lightpink") + 
   theme_minimal()

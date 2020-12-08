@@ -1,24 +1,7 @@
 #Importamos las librerias necesarias####
-pacman::p_load(pacman,tm,SnowballC,tidyverse)
-
+pacman::p_load(pacman,tidyverse)
 #Cargamos los datos####
-
-datosAnimales <- read_csv(file.choose())
-datosAnimales
-
-#Creo una variable con la columna de los paises para poder limpiarla mejor####
-ColumnaPaises <- datosAnimales[,"All_DistributionFullNames"]
-ColumnaPaises
-
-#Aplico expresiones regulares####
-soloEspaña <- str_match(datosAnimales, '\b(Spain)\b')
-soloEspaña
-
-#Solo en Espania####
-prueba <- datosAnimales[datosAnimales$All_DistributionFullNames == 'Spain', ]
-prueba
-
+datosAnimales <- read_csv('cites_listings_2020-11-27 22_58_comma_separated.csv')
 #especies solo espania####
-contar <- sum(datosAnimales[datosAnimales$All_DistributionFullNames == 'Spain'],)
-contar
-
+only_es <- datosAnimales %>% filter(All_DistributionFullNames=='Spain')
+only_es %>% ggplot( mapping = aes(y=Family))+geom_bar()
